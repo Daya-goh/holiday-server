@@ -4,18 +4,19 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT ?? 4300;
 const morgan = require("morgan");
+const cors = require("cors");
 
 app.use(morgan("dev"));
 app.use(cors());
 
-const mongoose = require("mongoose");
-// const <schema file name> = require("<path to schema>");
+// const mongoose = require("mongoose");
+// // const <schema file name> = require("<path to schema>");
 
-const MONGO_URI = process.env.MONGO_URI ?? "mongodb://localhost:27017/holidays";
-mongoose.connect(MONGO_URI);
-mongoose.connection.once("open", () => {
-  console.log(`connected to mongo at ${MONGO_URI}`);
-});
+// const MONGO_URI = process.env.MONGO_URI ?? "mongodb://localhost:27017/holidays";
+// mongoose.connect(MONGO_URI);
+// mongoose.connection.once("open", () => {
+//   console.log(`connected to mongo at ${MONGO_URI}`);
+// });
 
 // all middleware -> app.use
 app.use(express.json());
@@ -29,8 +30,3 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
-
-// Define callback functions for various events mongoose
-// db.on("error", (err) => console.log(err.message + " is Mongodb not running?"));
-// db.on("connected", () => console.log("mongo connected: ", mongo_URI));
-// db.on("disconnected", () => console.log("mongo disconnected"));

@@ -5,6 +5,9 @@ const app = express();
 const port = process.env.PORT ?? 4300;
 const morgan = require("morgan");
 
+app.use(morgan("dev"));
+app.use(cors());
+
 const mongoose = require("mongoose");
 // const <schema file name> = require("<path to schema>");
 
